@@ -141,9 +141,7 @@ public class Demo
 					System.out.println("----------------------------------------Exiting the application --------------------------------------------------------");
 					System.out.println("---------------------------------------------Visit Again --------------------------------------------------------------");
 					
-					ans = "No";
 					break;
-//					return;
 					
 				}
 				
@@ -159,8 +157,6 @@ public class Demo
 		{
 			System.out.println("Something went wrong");
 		}
-		
-		
 		
 		
 	}
