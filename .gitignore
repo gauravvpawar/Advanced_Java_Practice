@@ -1,2 +1,4 @@
-#for the avoid metadata folder
-/.metadata
+.metadata/
+*.classpath
+*.project
+*.settings/
