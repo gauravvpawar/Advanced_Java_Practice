@@ -8,6 +8,8 @@ public class Demo {
 		{
 			Class.forName("mongodb.jdbc.MongoDriver");
 			System.out.println("Connection Successfull");
+			
+
 		}catch(Exception e)
 		{
 			System.out.println("Something went wrong");
