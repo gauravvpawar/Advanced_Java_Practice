@@ -1,4 +1,17 @@
+# Eclipse / IDE metadata
 .metadata/
-*.classpath
-*.project
-*.settings/
+.classpath
+.project
+.settings/
+
+# Tomcat server configuration
+Servers/
+**/server.xml
+
+# Build folders
+bin/
+target/
+
+# System files
+*.log
+*.tmp
