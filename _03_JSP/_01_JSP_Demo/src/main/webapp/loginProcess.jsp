@@ -15,8 +15,13 @@ Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/testin
 PreparedStatement ps = con.prepareStatement("Select * from student where semail = '"+email+"' and spassword='"+password+"'");
 ResultSet rs = ps.executeQuery();
 
+
 if(rs.next())
 {
+	
+	HttpSession s1 =  request.getSession();
+	s1.setAttribute("x", email);
+	
 	out.println("<script>");
 	out.println("alert('User login successfull')");
 	out.println("window.location.href='Home.jsp'");
