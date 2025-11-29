@@ -448,8 +448,12 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <button class="btn btn-outline" id="patientLoginBtn">Patient Login</button>
-                    <button class="btn btn-primary" id="doctorLoginBtn"><a href="./DoctorWork/DoctorLoginForm.jsp">Doctor Login</a></button>
+                    <button class="btn btn-outline" id="patientLoginBtn">
+                    	<a href="./Pages/PatientWork/PatientLoginForm.jsp">Patient Login</a>
+                    </button>
+                    <button class="btn btn-primary" id="doctorLoginBtn">
+                    	<a href="./Pages/DoctorWork/DoctorLoginForm.jsp">Doctor Login</a>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -576,163 +580,12 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 MediCare. All rights reserved.</p>
+                <p>&copy; 2025 MediCare. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Patient Login Modal -->
-    <div class="modal" id="patientLoginModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Patient Login</h2>
-            <form id="patientLoginForm">
-                <div class="form-group">
-                    <label for="patientEmail">Email</label>
-                    <input type="email" id="patientEmail" class="form-control" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="patientPassword">Password</label>
-                    <input type="password" id="patientPassword" class="form-control" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            </form>
-            <p style="text-align: center; margin-top: 15px;">
-                Don't have an account? <a href="#" id="showPatientRegister">Register here</a>
-            </p>
-        </div>
-    </div>
 
-    <!-- Patient Registration Modal -->
-    <div class="modal" id="patientRegisterModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Patient Registration</h2>
-            <form id="patientRegisterForm">
-                <div class="form-group">
-                    <label for="patientFullName">Full Name</label>
-                    <input type="text" id="patientFullName" class="form-control" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="patientRegEmail">Email</label>
-                    <input type="email" id="patientRegEmail" class="form-control" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="patientRegPassword">Password</label>
-                    <input type="password" id="patientRegPassword" class="form-control" placeholder="Create a password" required>
-                </div>
-                <div class="form-group">
-                    <label for="patientPhone">Phone Number</label>
-                    <input type="tel" id="patientPhone" class="form-control" placeholder="Enter your phone number" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
-            </form>
-            <p style="text-align: center; margin-top: 15px;">
-                Already have an account? <a href="#" id="showPatientLogin">Login here</a>
-            </p>
-        </div>
-    </div>
-
-    <!-- Doctor Login Modal -->
-    <div class="modal" id="doctorLoginModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title">Doctor Login</h2>
-            <form id="doctorLoginForm">
-                <div class="form-group">
-                    <label for="doctorEmail">Email</label>
-                    <input type="email" id="doctorEmail" class="form-control" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="doctorPassword">Password</label>
-                    <input type="password" id="doctorPassword" class="form-control" placeholder="Enter your password" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Patient Dashboard -->
-    <div class="modal" id="patientDashboardModal">
-        <div class="modal-content" style="max-width: 800px;">
-            <span class="close-modal">&times;</span>
-            <div class="dashboard">
-                <div class="dashboard-header">
-                    <h2>Patient Dashboard</h2>
-                    <button class="btn btn-outline" id="logoutPatient">Logout</button>
-                </div>
-                <div class="dashboard-nav">
-                    <a href="#" class="active" data-tab="appointments">My Appointments</a>
-                    <a href="#" data-tab="profile">Profile</a>
-                    <a href="#" data-tab="book">Book Appointment</a>
-                </div>
-                
-                <div id="appointmentsTab" class="tab-content">
-                    <h3>My Appointments</h3>
-                    <div class="appointments-list">
-                        <div class="appointment-card">
-                            <div class="appointment-info">
-                                <h3>Dr. Sarah Johnson</h3>
-                                <p class="appointment-meta">Cardiologist | October 15, 2023 | 10:00 AM</p>
-                                <p>Status: <span style="color: var(--success);">Confirmed</span></p>
-                            </div>
-                            <div class="appointment-actions">
-                                <button class="btn btn-outline">Reschedule</button>
-                                <button class="btn btn-outline" style="color: var(--danger);">Cancel</button>
-                            </div>
-                        </div>
-                        <div class="appointment-card">
-                            <div class="appointment-info">
-                                <h3>Dr. Michael Chen</h3>
-                                <p class="appointment-meta">Neurologist | October 20, 2023 | 2:30 PM</p>
-                                <p>Status: <span style="color: #f39c12;">Pending</span></p>
-                            </div>
-                            <div class="appointment-actions">
-                                <button class="btn btn-outline">Reschedule</button>
-                                <button class="btn btn-outline" style="color: var(--danger);">Cancel</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="bookTab" class="tab-content" style="display: none;">
-                    <h3>Book New Appointment</h3>
-                    <form id="bookAppointmentForm">
-                        <div class="form-group">
-                            <label for="selectDoctor">Select Doctor</label>
-                            <select id="selectDoctor" class="form-control" required>
-                                <option value="">Choose a doctor</option>
-                                <option value="1">Dr. Prakash - Cardiologist</option>
-                                <option value="2">Dr. Shukla - Neurologist</option>
-                                <option value="3">Dr. Rathod - Pediatrician</option>
-                                <option value="4">Dr. Sahare - Orthopedic Surgeon</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="appointmentDate">Date</label>
-                            <input type="date" id="appointmentDate" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="appointmentTime">Time</label>
-                            <select id="appointmentTime" class="form-control" required>
-                                <option value="">Select time</option>
-                                <option value="09:00">09:00 AM</option>
-                                <option value="10:00">10:00 AM</option>
-                                <option value="11:00">11:00 AM</option>
-                                <option value="14:00">02:00 PM</option>
-                                <option value="15:00">03:00 PM</option>
-                                <option value="16:00">04:00 PM</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="appointmentReason">Reason for Visit</label>
-                            <textarea id="appointmentReason" class="form-control" rows="3" placeholder="Briefly describe your symptoms or reason for appointment"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Book Appointment</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+           
 </body>
 </html>

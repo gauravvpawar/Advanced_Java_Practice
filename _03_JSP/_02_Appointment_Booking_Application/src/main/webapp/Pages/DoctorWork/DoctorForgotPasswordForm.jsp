@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login Form</title>
+<title>Forgot Password</title>
+</head>
+
 
 <style>
     body {
@@ -85,18 +88,31 @@
         text-decoration: underline;
     }
 </style>
-</head>
 <body>
 
-<form>
- <label>Email:</label>
-    <input type="email" name="email" required>
 
-    <label>Password:</label>
-    <input type="password" name="password" required>
-</form>
 
-<a href="DoctorRegistrationForm.jsp">Create Account</a>
+<div class="container">
+
+    <h2>Doctor Forgot Password</h2>
+
+    <form action="${pageContext.request.contextPath}/Controller/DoctorForgotPasswordProcess.jsp" method="post">
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        
+
+
+        <label>Password:</label>
+        <input type="text" name="password" required>
+
+        <label>Confirm Password:</label>
+        <input type="text" name="cnfPassword" required>
+
+        <button type="submit">Update</button>
+    </form>
+
+</div>
+
 
 </body>
 </html>
