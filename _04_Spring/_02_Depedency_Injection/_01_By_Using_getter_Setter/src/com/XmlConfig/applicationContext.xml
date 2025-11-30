@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    
+    
+<bean class="com.First.Clinic" id ="c1">
+<property name="clinicName" value="OmSai"></property>
+<property name="clinicAddress" value="PMC"></property>
+<property name="clinicPincode" value="411011"></property>
+<property name="d1" ref="d1"></property>
+</bean>    
+    
+    
+<bean class="com.First.Doctor" id="d1">
+<property name="did" value="101"></property>
+<property name="dname" value="Dr. Gaurav"></property>
+<property name="demail" value="gaurav@gmail.com"></property>
+<property name="p1" ref="t1"></property>
+</bean>
+
+
+<bean class="com.First.Patient" id="t1">
+<property name="pid" value="1111"></property>
+<property name="pname" value="arnav"></property>
+<property name="page" value="30"></property>
+<property name="pdisease" value="maleria"></property>
+</bean>
+
+
+</beans>
