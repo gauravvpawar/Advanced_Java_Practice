@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+<!-- Here autowire have 4 modes by name it check class reference type and bean name same by type -->
+
+<bean class="com.First.Restaurant" id="r1" autowire="byType">
+<property name="rname" value="Atithya Restaurant"></property>
+<property  name="raddress" value="Pmc"></property>
+<property name="rrating" value="4"></property>
+</bean>
+
+<bean class="com.First.Waiter">
+<property name="wname" value="raghu"></property>
+<property name="wid" value="1212"></property>
+<property name="wemail" value="raghu@gmail.com"></property>
+</bean>
+
+</beans>

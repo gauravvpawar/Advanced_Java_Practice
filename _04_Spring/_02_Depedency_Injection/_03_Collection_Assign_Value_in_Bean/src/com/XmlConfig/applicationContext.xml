@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean class="com.First.College" name="c1">
+<constructor-arg value="BIT yenbodi"></constructor-arg>
+<constructor-arg value="Chandrapur"></constructor-arg>
+<constructor-arg value="442701"></constructor-arg>
+<constructor-arg ref="s1"></constructor-arg>
+
+<constructor-arg>
+<list>
+<value>Physics</value>
+<value>Chemistry</value>
+<value>Biology</value>
+<value>Mathematics</value>
+</list>
+</constructor-arg>
+
+<constructor-arg>
+<set>
+<value>Science</value>
+<value>Commerce</value>
+<value>Arts</value>
+</set>
+</constructor-arg>
+
+<constructor-arg>
+<map>
+<entry key="Science" value="130"></entry>
+<entry key="Commerce" value="150"></entry>
+<entry key="Arts" value="100"></entry>
+</map>
+</constructor-arg>
+
+</bean>
+
+<bean class="com.First.Student" id ="s1" >
+<constructor-arg value="Rocky"></constructor-arg>
+<constructor-arg value="st_12"></constructor-arg>
+<constructor-arg value="10th "></constructor-arg>
+</bean>
+
+
+
+
+
+    <!-- bean definitions here -->
+
+</beans>
