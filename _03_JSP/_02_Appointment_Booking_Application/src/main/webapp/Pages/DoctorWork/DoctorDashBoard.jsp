@@ -9,582 +9,1066 @@
 
  <title>Doctor Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --primary-light: #3b82f6;
+        --secondary: #0ea5e9;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --info: #06b6d4;
+        --light-bg: #f8fafc;
+        --sidebar-bg: #1e293b;
+        --card-bg: #ffffff;
+        --text-dark: #1e293b;
+        --text-light: #64748b;
+        --border: #e2e8f0;
+        --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
 
-        :root {
-            --primary: #2c7be5;
-            --secondary: #6c757d;
-            --success: #00d97e;
-            --info: #39afd1;
-            --warning: #f6c343;
-            --danger: #e63757;
-            --light: #f9fafd;
-            --dark: #12263f;
-            --sidebar: #12263f;
-            --card-bg: #ffffff;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            display: flex;
-            min-height: 100vh;
-        }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        line-height: 1.6;
+        display: flex;
+        min-height: 100vh;
+    }
 
-        /* Sidebar Styles */
+    /* SIDEBAR */
+    .sidebar {
+        width: 260px;
+        background: var(--sidebar-bg);
+        color: white;
+        height: 100vh;
+        position: fixed;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        padding: 24px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+
+    .brand-text h2 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .brand-text p {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+    }
+
+    .sidebar-menu {
+        padding: 20px 0;
+    }
+
+    .nav-item {
+        list-style: none;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        border-left: 3px solid transparent;
+    }
+
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-left-color: var(--primary);
+    }
+
+    .nav-link.active {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border-left-color: var(--primary);
+    }
+
+    .nav-icon {
+        width: 24px;
+        margin-right: 12px;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+        flex: 1;
+        margin-left: 260px;
+        padding: 0;
+        transition: all 0.3s ease;
+    }
+
+    /* HEADER */
+    .header {
+        background: white;
+        padding: 18px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: var(--shadow-sm);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .page-title h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+    }
+
+    .user-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px;
+        background: var(--light-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .user-info h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        margin-bottom: 2px;
+    }
+
+    .user-info p {
+        font-size: 0.8rem;
+        color: var(--text-light);
+    }
+
+    .logout-btn {
+        padding: 10px 20px;
+        background: linear-gradient(135deg, var(--danger), #f87171);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+
+    .logout-btn:hover {
+        background: linear-gradient(135deg, #dc2626, var(--danger));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+    }
+
+    /* CONTENT AREA */
+    .content-area {
+        padding: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    /* STATS CARDS */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        border: 1px solid var(--border);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stat-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    .stat-content h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .stat-content p {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+
+    /* PROFILE SECTION */
+    .profile-section {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    @media (max-width: 1024px) {
+        .profile-section {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .profile-card {
+        background: white;
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: var(--shadow);
+        text-align: center;
+        border-top: 4px solid var(--primary);
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        border: 4px solid white;
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2);
+    }
+
+    .doctor-info h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 8px;
+    }
+
+    .doctor-specialization {
+        display: inline-block;
+        padding: 6px 16px;
+        background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.15));
+        color: var(--primary);
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .contact-info {
+        text-align: left;
+        margin: 25px 0;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+        border-bottom: none;
+    }
+
+    .contact-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 0.9rem;
+    }
+
+    .contact-text {
+        flex: 1;
+    }
+
+    .contact-label {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        margin-bottom: 2px;
+    }
+
+    .contact-value {
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.2));
+        color: var(--success);
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin: 15px 0;
+    }
+
+    .profile-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, var(--danger), #f87171);
+        color: white;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-danger:hover {
+        background: linear-gradient(135deg, #dc2626, var(--danger));
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+    }
+
+    /* DATA CARDS */
+    .data-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 20px 30px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-header h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    /* TABLES */
+    .table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 800px;
+    }
+
+    .data-table thead {
+        background: linear-gradient(135deg, var(--light-bg), #f1f5f9);
+    }
+
+    .data-table th {
+        padding: 16px 20px;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-dark);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .data-table td {
+        padding: 16px 20px;
+        border-bottom: 1px solid var(--border);
+        color: var(--text-dark);
+        font-weight: 500;
+    }
+
+    .data-table tbody tr {
+        transition: all 0.2s ease;
+    }
+
+    .data-table tbody tr:hover {
+        background: rgba(37, 99, 235, 0.03);
+    }
+
+    .status-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .status-active {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.2));
+        color: var(--success);
+    }
+
+    .status-pending {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.2));
+        color: var(--warning);
+    }
+
+    .status-monitoring {
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(6, 182, 212, 0.2));
+        color: var(--info);
+    }
+
+    .view-btn {
+        padding: 6px 16px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .view-btn:hover {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        transform: translateY(-1px);
+    }
+
+    /* NO APPOINTMENTS STATE */
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--text-light);
+    }
+
+    .empty-state i {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+
+    .empty-state h4 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: var(--text-dark);
+    }
+
+    .empty-state p {
+        margin-bottom: 25px;
+        max-width: 400px;
+        margin: 0 auto 25px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1200px) {
         .sidebar {
-            width: 250px;
-            background: var(--sidebar);
-            color: white;
-            height: 100vh;
-            position: fixed;
-            transition: all 0.3s;
-            z-index: 100;
+            width: 80px;
         }
-
-        .sidebar-header {
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .sidebar-header .brand-text,
+        .nav-link span {
+            display: none;
         }
-
-        .sidebar-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+        
+        .brand {
+            justify-content: center;
         }
-
-        .sidebar-header p {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.7);
+        
+        .nav-link {
+            justify-content: center;
+            padding: 15px;
         }
-
-        .sidebar-menu {
-            padding: 15px 0;
+        
+        .nav-icon {
+            margin-right: 0;
+            font-size: 1.3rem;
         }
-
-        .sidebar-menu ul {
-            list-style: none;
-        }
-
-        .sidebar-menu li {
-            padding: 12px 20px;
-            transition: all 0.3s;
-        }
-
-        .sidebar-menu li:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .sidebar-menu li.active {
-            background: var(--primary);
-        }
-
-        .sidebar-menu a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar-menu i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Main Content Styles */
+        
         .main-content {
-            flex: 1;
-            margin-left: 250px;
+            margin-left: 80px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .content-area {
             padding: 20px;
-            transition: all 0.3s;
         }
-
+        
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            gap: 15px;
+            padding: 15px;
         }
-
-        .user-info {
-            display: flex;
-            align-items: center;
+        
+        .user-actions {
+            flex-direction: column;
+            width: 100%;
         }
-
-        .user-info img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+        
+        .user-profile {
+            width: 100%;
+            justify-content: center;
         }
-
-        .page-title h1 {
-            font-size: 1.8rem;
-            color: var(--dark);
+        
+        .logout-btn {
+            width: 100%;
+            justify-content: center;
         }
-
-        /* Card Styles */
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-            overflow: hidden;
+        
+        .stats-grid {
+            grid-template-columns: 1fr;
         }
-
-        .card-header {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        
+        .profile-actions {
+            flex-direction: column;
         }
-
+        
         .card-body {
             padding: 20px;
         }
+    }
 
-        /* Dashboard Stats */
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
         }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            display: flex;
-            align-items: center;
-        }
+    .fade-in {
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
 
-        .stat-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
+    .delay-1 {
+        animation-delay: 0.1s;
+    }
 
-        .stat-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
+    .delay-2 {
+        animation-delay: 0.2s;
+    }
 
-        .stat-info p {
-            color: var(--secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Profile Section */
-        .profile-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 20px;
-        }
-
-        .profile-card {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--primary);
-        }
-
-        .profile-info h2 {
-            margin-bottom: 5px;
-        }
-
-        .profile-info p {
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-
-        .profile-actions {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn i {
-            margin-right: 5px;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #1a68d1;
-        }
-
-        .btn-danger:hover {
-            background: #d42a4a;
-        }
-
-        /* Table Styles */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        th {
-            background: var(--light);
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background: rgba(0, 0, 0, 0.02);
-        }
-
-        .status {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .status-active {
-            background: rgba(0, 217, 126, 0.1);
-            color: var(--success);
-        }
-
-        .status-pending {
-            background: rgba(246, 195, 67, 0.1);
-            color: var(--warning);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .sidebar {
-                width: 80px;
-                text-align: center;
-            }
-            
-            .sidebar-header h2, .sidebar-header p, .sidebar-menu span {
-                display: none;
-            }
-            
-            .sidebar-menu i {
-                margin-right: 0;
-                font-size: 1.5rem;
-            }
-            
-            .main-content {
-                margin-left: 80px;
-            }
-            
-            .profile-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .profile-actions {
-                flex-direction: column;
-            }
-        }
-    </style>
+    .delay-3 {
+        animation-delay: 0.3s;
+    }
+</style>
 </head>
 <body>
 
 <%
-
 HttpSession s1 = request.getSession();
 String email = (String)s1.getAttribute("email");
 
 if(email == null)
 {
-	out.println("<script>");
-	out.println("alert('You cannot access directly ! Login first')");
-	out.println("window.location.href = './'");
-	out.println("</script>");
+    out.println("<script>");
+    out.println("alert('You cannot access directly ! Login first')");
+    out.println("window.location.href = './'");
+    out.println("</script>");
 }
-
 
 int id = Integer.parseInt(request.getParameter("id"));
 
-
 Class.forName("com.mysql.cj.jdbc.Driver");
-
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/appointment_booking", "root","gaurav@123");
-
 PreparedStatement ps =  con.prepareStatement("select * from doctor where did = '"+id+"'");
-
 ResultSet rs = ps.executeQuery();
 
 if(!rs.next())
 {
-	System.out.println("Data not found");
+    System.out.println("Data not found");
 }
-
-
 %>
 
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>MediCare</h2>
-            <p>Doctor Portal</p>
-        </div>
-        <div class="sidebar-menu">
-            <ul>
-                <li class="active"><a href="#"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-                <li><a href="#"><i class="fas fa-calendar-alt"></i> <span>Appointments</span></a></li>
-                <li><a href="#"><i class="fas fa-user-injured"></i> <span>Patients</span></a></li>
-                <li><a href="#"><i class="fas fa-prescription"></i> <span>Prescriptions</span></a></li>
-                <li><a href="#"><i class="fas fa-chart-line"></i> <span>Reports</span></a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
-            </ul>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="brand">
+            <div class="brand-logo">
+                <i class="fas fa-stethoscope"></i>
+            </div>
+            <div class="brand-text">
+                <h2>MediCare </h2>
+                <p>Doctor Portal</p>
+            </div>
         </div>
     </div>
+    
+    <div class="sidebar-menu">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>
+                    <span>Appointments</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-user-injured"></i></span>
+                    <span>Patients</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-prescription"></i></span>
+                    <span>Prescriptions</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-cog"></i></span>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <div class="header">
-            <div class="page-title">
-                <h1>Doctor Dashboard</h1>
-            </div>
-            <div class="user-info">	
-                <img src="https://ui-avatars.com/api/?name=Doctor+User&background=2c7be5&color=fff" alt="User">
-                <div>
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <!-- HEADER -->
+    <div class="header">
+        <div class="page-title">
+            <h1>Doctor Dashboard</h1>
+        </div>
+        <div class="user-actions">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <%= rs.getString(2).charAt(0) %>
+                </div>
+                <div class="user-info">
                     <h4><%= rs.getString(2) %></h4>
                     <p><%= rs.getString(7) %></p>
                 </div>
-                
-                <div>
-                <button class="btn btn-outline-danger">
-                	<a href='${pageContext.request.contextPath}/Controller/DoctorLogOutProcess.jsp'>Logout</a>
-                </button>
+            </div>
+            <a href="${pageContext.request.contextPath}/Controller/DoctorLogOutProcess.jsp" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENT AREA -->
+    <div class="content-area">
+        <!-- STATISTICS -->
+        <div class="stats-grid">
+            <div class="stat-card fade-in">
+                <div class="stat-header">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, var(--primary), var(--primary-light));">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>42</h3>
+                        <p>Total Patients</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card fade-in delay-1">
+                <div class="stat-header">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, var(--success), #34d399);">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>18</h3>
+                        <p>Today's Appointments</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card fade-in delay-2">
+                <div class="stat-header">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, var(--warning), #fbbf24);">
+                        <i class="fas fa-prescription"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>36</h3>
+                        <p>Prescriptions This Month</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card fade-in delay-3">
+                <div class="stat-header">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, var(--info), #22d3ee);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>92%</h3>
+                        <p>Patient Satisfaction</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(44, 123, 229, 0.1); color: var(--primary);">
-                    <i class="fas fa-user-injured"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>42</h3>
-                    <p>Total Patients</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(0, 217, 126, 0.1); color: var(--success);">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>18</h3>
-                    <p>Today's Appointments</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(246, 195, 67, 0.1); color: var(--warning);">
-                    <i class="fas fa-prescription"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>36</h3>
-                    <p>Prescriptions This Month</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon" style="background: rgba(57, 175, 209, 0.1); color: var(--info);">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="stat-info">
-                    <h3>92%</h3>
-                    <p>Patient Satisfaction</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Profile and Patient Info -->
-        <div class="profile-container">
-            <!-- Profile Card -->
-            <div class="card profile-card">
-                <div class="profile-img">
+        <!-- PROFILE SECTION -->
+        <div class="profile-section">
+            <!-- PROFILE CARD -->
+            <div class="profile-card fade-in">
+                <div class="profile-avatar">
                     <i class="fas fa-user-md"></i>
                 </div>
-                <div class="profile-info">
+                <div class="doctor-info">
                     <h2><%= rs.getString(2) %></h2>
-                    <p><%= rs.getString(7) %></p>
-                    <p><i class="fas fa-envelope"></i> <%= rs.getString(3) %></p>
-                    <p><i class="fas fa-phone"></i> <%= rs.getString(6) %></p>
-                    <p><i class="fas fa-graduation-cap"></i> <%= rs.getString(7) %>, <%= rs.getInt(9) %> years experience</p>
-                    <p><i class="fas fa-venus"></i> <%= rs.getString(10) %></p>
-                    <div class="status status-active"><%= rs.getString(11) %></div>
+                    <div class="doctor-specialization">
+                        <%= rs.getString(7) %>
+                    </div>
                 </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value"><%= rs.getString(3) %></div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Phone</div>
+                            <div class="contact-value"><%= rs.getString(6) %></div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Experience</div>
+                            <div class="contact-value"><%= rs.getInt(9) %> years</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-venus-mars"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">Gender</div>
+                            <div class="contact-value"><%= rs.getString(10) %></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-badge">
+                    <i class="fas fa-circle"></i>
+                    <%= rs.getString(11) %>
+                </div>
+                
                 <div class="profile-actions">
-                    <button class="btn btn-primary">
-                    <i class="fas fa-edit"></i>
-                     <a href="./DoctorEditForm.jsp?id=<%= rs.getInt(1)%>">
-                     Edit Profile
-                     </a> </button>
-                    <button class="btn btn-danger"><i class="fas fa-trash-alt">
-                    </i> <a href="${pageContext.request.contextPath}/Controller/DoctorDeleteProcess.jsp?id=<%= rs.getInt(1)%>">
-                    Delete Profile</a></button>
+                    <a href="./DoctorEditForm.jsp?id=<%= rs.getInt(1)%>" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Edit Profile
+                    </a>
+                    <a href="${pageContext.request.contextPath}/Controller/DoctorDeleteProcess.jsp?id=<%= rs.getInt(1)%>" class="btn btn-danger">
+                        <i class="fas fa-trash-alt"></i>
+                        Delete Profile
+                    </a>
                 </div>
             </div>
 
-            <!-- Patient List -->
-            <div class="card">
+            <!-- PATIENTS TABLE -->
+            <div class="data-card fade-in delay-1">
                 <div class="card-header">
-                    <h3>Recent Patients</h3>
-                    <button class="btn btn-primary"><i class="fas fa-plus"></i> Add Patient</button>
+                    <h3><i class="fas fa-user-injured"></i> Recent Patients</h3>
+                    <button class="view-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Patient
+                    </button>
                 </div>
                 <div class="card-body">
-                    <table>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Age</th>
+                                    <th>Condition</th>
+                                    <th>Last Visit</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Rajesh Kumar</td>
+                                    <td>45</td>
+                                    <td>Hypertension</td>
+                                    <td>2023-10-15</td>
+                                    <td><span class="status-tag status-active">Stable</span></td>
+                                    <td><button class="view-btn"><i class="fas fa-eye"></i> View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Priya Sharma</td>
+                                    <td>32</td>
+                                    <td>Diabetes</td>
+                                    <td>2023-10-12</td>
+                                    <td><span class="status-tag status-active">Improving</span></td>
+                                    <td><button class="view-btn"><i class="fas fa-eye"></i> View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Amit Patel</td>
+                                    <td>58</td>
+                                    <td>Arthritis</td>
+                                    <td>2023-10-10</td>
+                                    <td><span class="status-tag status-pending">Follow-up</span></td>
+                                    <td><button class="view-btn"><i class="fas fa-eye"></i> View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Sunita Singh</td>
+                                    <td>29</td>
+                                    <td>Migraine</td>
+                                    <td>2023-10-08</td>
+                                    <td><span class="status-tag status-active">Stable</span></td>
+                                    <td><button class="view-btn"><i class="fas fa-eye"></i> View</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Vikram Joshi</td>
+                                    <td>65</td>
+                                    <td>Cardiac Issue</td>
+                                    <td>2023-10-05</td>
+                                    <td><span class="status-tag status-monitoring">Monitoring</span></td>
+                                    <td><button class="view-btn"><i class="fas fa-eye"></i> View</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- APPOINTMENTS SECTION -->
+        <div class="data-card fade-in delay-2">
+            <div class="card-header">
+                <h3><i class="fas fa-calendar-alt"></i> Upcoming Appointments</h3>
+            </div>
+            
+            <%
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/appointment_booking","root","gaurav@123");
+            
+            PreparedStatement ps2 = con.prepareStatement("select patient.name , patient.age , appointment.appointment_time , appointment.appointment_date , appointment.reason , appointment.status , appointment.appt_id from appointment join patient on appointment.pid = patient.pid where appointment.did = '"+id+"' order by appointment.appointment_date desc ");
+            ResultSet rs2 = ps2.executeQuery();
+            
+            boolean hasappointment = false;
+            %>
+            
+            <div class="card-body">
+                <%
+                if(rs2.next()) {
+                    hasappointment = true;
+                %>
+                <div class="table-container">
+                    <table class="data-table">
                         <thead>
                             <tr>
                                 <th>Patient Name</th>
                                 <th>Age</th>
-                                <th>Condition</th>
-                                <th>Last Visit</th>
+                                <th>Appointment Time</th>
+                                <th>Appointment Date</th>
+                                <th>Reason</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <% 
+                            do {
+                                String statusClass = "";
+                                switch(rs2.getString(6).toLowerCase()) {
+                                    case "confirmed":
+                                    case "active":
+                                        statusClass = "status-active";
+                                        break;
+                                    case "pending":
+                                        statusClass = "status-pending";
+                                        break;
+                                    case "monitoring":
+                                        statusClass = "status-monitoring";
+                                        break;
+                                    default:
+                                        statusClass = "status-pending";
+                                }
+                            %>
                             <tr>
-                                <td>Rajesh Kumar</td>
-                                <td>45</td>
-                                <td>Hypertension</td>
-                                <td>2023-10-15</td>
-                                <td><span class="status status-active">Stable</span></td>
-                                <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">View</button></td>
+                                <td><strong><%= rs2.getString(1) %></strong></td>
+                                <td><%= rs2.getString(2) %></td>
+                                <td><%= rs2.getString(3) %></td>
+                                <td><%= rs2.getString(4) %></td>
+                                <td><%= rs2.getString(5) %></td>
+                                <td><span class="status-tag <%= statusClass %>"><i class="fas fa-circle"></i> <%= rs2.getString(6) %></span></td>
+                            	<td>
+                            	 <a href="${pageContext.request.contextPath}/Controller/DoctorAction.jsp?id=<%= rs2.getString(7) %>" >Accept
+                            	 </a>
+                            	</td>
                             </tr>
-                            <tr>
-                                <td>Priya Sharma</td>
-                                <td>32</td>
-                                <td>Diabetes</td>
-                                <td>2023-10-12</td>
-                                <td><span class="status status-active">Improving</span></td>
-                                <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Amit Patel</td>
-                                <td>58</td>
-                                <td>Arthritis</td>
-                                <td>2023-10-10</td>
-                                <td><span class="status status-pending">Follow-up</span></td>
-                                <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Sunita Singh</td>
-                                <td>29</td>
-                                <td>Migraine</td>
-                                <td>2023-10-08</td>
-                                <td><span class="status status-active">Stable</span></td>
-                                <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">View</button></td>
-                            </tr>
-                            <tr>
-                                <td>Vikram Joshi</td>
-                                <td>65</td>
-                                <td>Cardiac Issue</td>
-                                <td>2023-10-05</td>
-                                <td><span class="status status-pending">Monitoring</span></td>
-                                <td><button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8rem;">View</button></td>
-                            </tr>
+                            <% 
+                            } while(rs2.next());
+                            %>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-
-        <!-- Upcoming Appointments -->
-        <div class="card">
-            <div class="card-header">
-                <h3>Upcoming Appointments</h3>
-            </div>
-            <div class="card-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Patient Name</th>
-                            <th>Time</th>
-                            <th>Purpose</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Rajesh Kumar</td>
-                            <td>10:00 AM</td>
-                            <td>Follow-up</td>
-                            <td><span class="status status-active">Confirmed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Neha Gupta</td>
-                            <td>11:30 AM</td>
-                            <td>General Checkup</td>
-                            <td><span class="status status-active">Confirmed</span></td>
-                        </tr>
-                        <tr>
-                            <td>Sanjay Verma</td>
-                            <td>2:15 PM</td>
-                            <td>Consultation</td>
-                            <td><span class="status status-pending">Pending</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <% 
+                } else { 
+                %>
+                <div class="empty-state">
+                    <i class="fas fa-calendar-times"></i>
+                    <h4>No Upcoming Appointments</h4>
+                    <p>You don't have any scheduled appointments at the moment.</p>
+                </div>
+                <% 
+                } 
+                %>
             </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>
