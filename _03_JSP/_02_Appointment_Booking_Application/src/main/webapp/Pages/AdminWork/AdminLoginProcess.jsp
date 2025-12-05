@@ -144,7 +144,7 @@
 <%
 String username , password;
 username = request.getParameter("username");
-password = request.getParameter("Password");
+password = request.getParameter("password");
 
 System.out.println(username);
 System.out.println(password);
