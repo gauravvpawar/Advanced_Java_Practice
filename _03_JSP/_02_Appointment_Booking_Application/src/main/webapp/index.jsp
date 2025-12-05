@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,53 +190,7 @@
             color: var(--dark);
         }
         
-        /* Doctors Section */
-        .doctors {
-            padding: 80px 0;
-            background-color: #f5f7fa;
-        }
-        
-        .doctors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .doctor-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .doctor-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .doctor-img {
-            height: 200px;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 60px;
-        }
-        
-        .doctor-info {
-            padding: 20px;
-        }
-        
-        .doctor-info h3 {
-            margin-bottom: 5px;
-        }
-        
-        .doctor-specialty {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
+       
         
         /* Footer */
         footer {
@@ -464,7 +422,7 @@
         <div class="container">
             <h1>Book Your Doctor's Appointment Online</h1>
             <p>Find the best doctors, book appointments instantly, and manage your healthcare needs all in one place.</p>
-            <button class="btn btn-primary" id="bookAppointmentBtn">Book Appointment Now</button>
+            <button class="btn btn-primary" id="bookAppointmentBtn"><a href="./Pages/PatientWork/PatientLoginForm.jsp">Book Appointment Now</a></button>
         </div>
     </section>
 
@@ -501,57 +459,10 @@
         </div>
     </section>
 
-    <!-- Doctors Section -->
-    <section class="doctors" id="doctors">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Specialist Doctors</h2>
-                <p>Meet our team of experienced and qualified healthcare professionals.</p>
-            </div>
-            <div class="doctors-grid">
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Sarah Johnson</h3>
-                        <p class="doctor-specialty">Cardiologist</p>
-                        <p>10+ years of experience in cardiac care and treatment.</p>
-                    </div>
-                </div>
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Michael Chen</h3>
-                        <p class="doctor-specialty">Neurologist</p>
-                        <p>Specialized in neurological disorders and treatments.</p>
-                    </div>
-                </div>
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. Emily Rodriguez</h3>
-                        <p class="doctor-specialty">Pediatrician</p>
-                        <p>Dedicated to providing the best care for children.</p>
-                    </div>
-                </div>
-                <div class="doctor-card">
-                    <div class="doctor-img">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="doctor-info">
-                        <h3>Dr. James Wilson</h3>
-                        <p class="doctor-specialty">Orthopedic Surgeon</p>
-                        <p>Expert in joint replacement and sports injuries.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
+<!--  Doctor Section -->
+   <%@ include file="./Controller/DoctorComponent.jsp" %>
 
     <!-- Footer -->
     <footer id="contact">

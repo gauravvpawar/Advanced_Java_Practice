@@ -731,7 +731,7 @@ if(!rs.next())
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="#Upcomming_appointment" class="nav-link">
                     <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>
                     <span>Appointments</span>
                 </a>
@@ -985,7 +985,7 @@ if(!rs.next())
         </div>
 
         <!-- APPOINTMENTS SECTION -->
-        <div class="data-card fade-in delay-2">
+        <div class="data-card fade-in delay-2" id="Upcomming_appointment">
             <div class="card-header">
                 <h3><i class="fas fa-calendar-alt"></i> Upcoming Appointments</h3>
             </div>

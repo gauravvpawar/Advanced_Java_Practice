@@ -7,7 +7,7 @@ int id = Integer.parseInt(request.getParameter("id"));
 
 Class.forName("com.mysql.cj.jdbc.Driver");
 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/appointment_booking","root","gaurav@123");
-PreparedStatement ps = con.prepareStatement("update appointment set status = 'accept' where appt_id = '"+id+"' ");
+PreparedStatement ps = con.prepareStatement("update appointment set status = 'accepted' where appt_id = '"+id+"' ");
 
 ps.execute();
 
