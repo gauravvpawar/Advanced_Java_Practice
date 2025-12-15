@@ -125,6 +125,9 @@ public class UserController
 				user.setUcnfPassword(u.getUcnfPassword());
 			}
 			
+			
+			System.out.println("Gender : "+u.getGender());
+			
 			if(u.getGender() != null)
 			{
 				user.setGender(u.getGender());

@@ -37,4 +37,8 @@ public class UserDao implements UserService
 		return ur.findById(id).orElse(null);
 	}
 
+	public User fetchUser(String email , String password)
+	{
+		return ur.findByUemailAndUpassword(email, password);
+	}
 }

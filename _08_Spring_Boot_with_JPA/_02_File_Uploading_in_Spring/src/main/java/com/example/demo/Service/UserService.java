@@ -14,4 +14,7 @@ public interface UserService
 	public void deleteUser(String id);
 	
 	public User fetchSingleUser(String uid);
+	
+	// custom JPA Method
+	public User fetchUser(String email , String password);
 }

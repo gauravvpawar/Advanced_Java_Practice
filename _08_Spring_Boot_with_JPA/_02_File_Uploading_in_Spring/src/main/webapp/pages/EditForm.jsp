@@ -91,11 +91,15 @@
         <label>Confirm Password</label>
         <input type="text" placeholder="Enter Confirm password" value="${User.ucnfPassword}" name="ucnfPassword" required>
 
-        <label name="gender">Gender</label>
-        <div class="gender">
-			<input type="radio" name="gender" value="${User.ucnfPassword}" value="male"> Male
-			<input type="radio" name="gender" value="${User.ucnfPassword}" value="female"> Female
-        </div>
+		<label>Gender</label>
+		<div class="gender">
+		    <input type="radio" name="gender" value="male"
+		        ${User.gender == 'male' ? 'checked' : ''}> Male
+			
+			<input type="radio" name="gender" value="famale"
+						        ${User.gender == 'famale' ? 'checked' : ''}> Female
+		</div>
+
 
 		<label>Enter your country :  </lebel>
 		<select name="country" >
