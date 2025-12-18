@@ -1,0 +1,5 @@
+1 -> created getmapping for connection check
+localhost:8080/check
+
+2-> to register manager
+localhost:8080/register
