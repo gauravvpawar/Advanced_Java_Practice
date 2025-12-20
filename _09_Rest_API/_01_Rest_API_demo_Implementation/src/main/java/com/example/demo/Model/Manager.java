@@ -11,6 +11,7 @@ public class Manager
 	private String mname;
 	private String memail;
 	private String mpassword;
+	
 	public String getMid() {
 		return mid;
 	}

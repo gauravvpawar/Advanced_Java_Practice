@@ -1,5 +1,15 @@
 1 -> created getmapping for connection check
+@getMapping
 localhost:8080/check
 
 2-> to register manager
+@postMapping
 localhost:8080/register
+
+3-> to delete manager
+@deleteMapping()
+localhost:8080/delManager/+mid
+
+4-> to update data of manager
+@putMapping
+localhost:8080/updateManager/+mid
