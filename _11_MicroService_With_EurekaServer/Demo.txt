@@ -1,0 +1,26 @@
+for the users checking the mapping is working or not
+localhost:9091/users/check
+
+1-> to save the user
+localhost:9091/users/saveUsers
+
+2-> to get All users
+localhost:9091/users/getAllUsers
+
+3-> to fetch user by uid
+
+for the items mapping
+to check mapping 
+localhost:9092/items/check
+
+1->to register items	
+localhost:9092/items/saveItems
+
+2->to fetch All Items
+localhost:9092/items/fetchAllItems
+
+3-> to fetch items by items id;
+localhost:9092/items/fetchItemById/+iid
+
+4->to fetch Items by User id;
+localhost:9092/items/fetchItemsByUid/+uid
