@@ -24,3 +24,32 @@ localhost:9092/items/fetchItemById/+iid
 
 4->to fetch Items by User id;
 localhost:9092/items/fetchItemsByUid/+uid
+
+{
+    "iid": "c5b85bbf-ce10-448c-b291-8322669bb9d4",
+    "uid": "545d5177-2183-4cf1-8ba7-e2746e104697",
+    "iname": "Apple Phone",
+    "ifeedback": "Beast Performance",
+    "paymentDetails": [
+        {
+            "pid": "128ef0bf-9a1a-4558-8c85-dccc8896032b",
+            "iid": "c5b85bbf-ce10-448c-b291-8322669bb9d4",
+            "amount": "50000",
+            "payment_mode": "Net Banking"
+        }
+    ]
+}
+
+
+Payment mapping
+1->to save payments
+localhost:9093/payments/savePayments
+
+2-> to fetch All Payment list
+localhost:9093/payments/getAllPayments
+
+3-> to fetch payment by Payment id
+localhost:9093/payments/fetchPayment/ + pid
+
+4 -> to fetch payment by Item id
+localhost:9093/payments/fetchPaymentByItemId/+itemId
