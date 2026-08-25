@@ -8,6 +8,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/mysql-connector-java-8.0.13.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/postgresql-42.7.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ASUS/Downloads/mongo-java-driver-2.12.2.jar"/>
+	<classpathentry kind="lib" path="C:/mongodb_Connectors/bson-5.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/mongodb_Connectors/mongodb-driver-core-5.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/mongodb_Connectors/mongodb-driver-sync-5.9.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
