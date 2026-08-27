@@ -33,7 +33,6 @@ public class Demo
 				System.out.println("1 -> User Registration \n2 -> User Login \n3 -> forgot Password \n4 -> Exit from application");
 				int num = sc.nextInt();
 				
-				
 				switch(num)
 				{
 				
@@ -42,9 +41,9 @@ public class Demo
 					System.out.println("----------------------------------User registration----------------------------------------------");
 					
 					System.out.println("Enter your name : ");
-					String name = sc.next();
+					String name = sc.nextLine();
 					System.out.println("Enter your email : ");
-					String email = sc.next();
+					String email = sc.nextLine();
 					
 					String password , cnfPassword;
 					
@@ -148,7 +147,7 @@ public class Demo
 				
 				System.out.println("Enter Yes to perform :");
 				ans = sc.next();
-			}while(ans.equals("Yes"));
+			}while(ans.equals("Yes") || ans.equals("yes"));
 		
 			
 			
